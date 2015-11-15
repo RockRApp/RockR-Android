@@ -1,5 +1,6 @@
 package rockr.elliottewing.com.rockr;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.TextView;
 
 
 public class SecondaryActivity extends ActionBarActivity {
@@ -18,11 +20,19 @@ public class SecondaryActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secondary);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
+
+        Intent i = getIntent();
+        String name = i.getStringExtra("name");
+        String email = i.getStringExtra("email");
+        if(name != null) {
+            TextView field = (TextView) findViewById(R.id.NameDisplay);
+            field.setText(name);
         }
+        if(email != null) {
+            TextView field = (TextView) findViewById(R.id.EmailDisplay);
+            field.setText(email);
+        }
+
     }
 
 
@@ -46,21 +56,5 @@ public class SecondaryActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_secondary, container, false);
-            return rootView;
-        }
     }
 }

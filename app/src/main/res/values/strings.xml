@@ -2,9 +2,12 @@
 <resources>
 
     <string name="app_name">RockR</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Hello world! testing</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_secondary">SecondaryActivity</string>
     <string name="hint">Hint...</string>
+    <string name="submit">Submit</string>
+    <string name="close">Close</string>
+    <string name="notset">This value has not been set yet.</string>
 
 </resources>
