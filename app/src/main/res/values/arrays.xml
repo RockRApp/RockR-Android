@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="states">
+        <item>Oregon</item>
+        <item>Washington</item>
+        <item>Idaho</item>
+        <item>California</item>
+    </string-array>
+
+    <string-array name="countries">
+        <item>United States</item>
+        <item>Canada</item>
+    </string-array>
+
+    <string-array name="genres">
+        <item>jazz</item>
+        <item>punk</item>
+        <item>rock</item>
+        <item>metal</item>
+    </string-array>
+
+    <string-array name="instruments">
+        <item>vocals</item>
+        <item>guitar</item>
+        <item>drums</item>
+        <item>bass</item>
+    </string-array>
+
+    <string-array name="distances">
+        <item>5 miles</item>
+        <item>10 miles</item>
+        <item>20 miles</item>
+        <item>50 miles</item>
+        <item>100 miles</item>
+        <item>100+ miles</item>
+    </string-array>
+
+</resources>

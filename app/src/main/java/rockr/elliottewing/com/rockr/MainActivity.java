@@ -1,50 +1,42 @@
 package rockr.elliottewing.com.rockr;
 
-import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.location.Address;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Toast;
 
+import org.apache.commons.logging.Log;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity
+        implements  LoginFragment.LoginFragmentListener,
+                    RegisterFragment.RegisterFragment1Listener,
+                    Register2Fragment.RegisterFragment2Listener,
+                    Register3Fragment.RegisterFragment3Listener {
+
+    public static UserProfile profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
-        final Button submitButton = (Button) findViewById(R.id.submitButton);
+        Fragment loginFrag = new PreLoginFragment();
 
-        submitButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), SecondaryActivity.class);
-
-                EditText nameField = (EditText) findViewById(R.id.NameField);
-                EditText emailField = (EditText) findViewById(R.id.EmailField);
-
-                i.putExtra("name", nameField.getText().toString());
-                i.putExtra("email", emailField.getText().toString());
-                startActivity(i);
-            }
-        });
+        FragmentManager fragManager = getSupportFragmentManager();
+        fragManager.beginTransaction().replace(R.id.container, loginFrag).commit();
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        return false;
     }
 
     @Override
@@ -55,10 +47,40 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    /** Fragment listener methods **/
+
+    @Override
+    public void onLoginFragmentSubmit() {
+
+    }
+
+    @Override
+    public void onRegisterFragment2Submit() {
+
+    }
+
+    @Override
+    public void onRegisterFragment3Submit() {
+
+    }
+
+    @Override
+    public void onRegisterFragment1Submit(String firstName, String lastName, Address address, Uri pic, String user, String pass) {
+        if(profile == null) profile = new UserProfile();
+        profile.setName(firstName, lastName);
+        profile.setAddress(address);
+        profile.setProfileImageUri(pic);
+        profile.setUsername(user);
+        profile.setPassword(pass);
+    }
+
+    public UserProfile getCurrentProfile() {
+        return profile;
     }
 }
